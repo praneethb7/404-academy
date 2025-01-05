@@ -67,8 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: email,
                 userType: userType,
             });
+            //send welcome mail
+            await sendWelcomeEmail(email, name, userType);
+
             signupSuccess.textContent = 'Account created successfully!';
-                signupSuccess.style.display = 'block';
+            signupSuccess.style.display = 'block';
                 
                 setTimeout(() => {
                     signupForm.reset();
@@ -101,3 +104,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+//send wlcm mail
+async function sendWelcomeEmail(userEmail, userName, userType) {
+    const apiUrl = "/api/server"; 
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: userEmail,
+                name: userName,
+                userType: userType,
+            }),
+        });
+
+        if (!response.ok) {
+            console.error("Error sending email:", await response.text());
+            alert("Failed to send welcome email.");
+        } else {
+            console.log("Welcome email sent successfully!");
+        }
+    } catch (error) {
+        console.error("Error in sending email:", error);
+    }
+}
