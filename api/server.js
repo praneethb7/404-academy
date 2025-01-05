@@ -13,7 +13,7 @@ export default async function handler(req, res) {
                 },
             ],
             from: {
-                email: "your-verified-email@example.com",
+                email: "praneeth.24bcs10081@sst.scaler.com",
                 name: "404 Academy",
             },
             content: [
