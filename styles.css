@@ -220,12 +220,15 @@ footer {
 }
 
 .auth-container h1 {
-    color: white;
+    color: #CCC9DC;
     font-size: 2.5rem;
     margin-bottom: 2rem;
 }
-.auth-container h2 {
-    color: white;
+.auth-container h2{
+    color: #CCC9DC;
+}
+.auth-container h3{
+    color: #CCC9DC;
 }
 .form-container {
     width: 90%;
