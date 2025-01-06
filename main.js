@@ -153,7 +153,7 @@ async function displayEnrolledCourses(userId) {
                     userPage.innerHTML += courseCard;
                 });
             } else {
-                userPage.innerHTML += "<p>You have not enrolled in any courses yet.</p>";
+                userPage.querySelector("h1").innerText = "No Courses Enrolled";
             }
         } else {
             console.error("User document does not exist.");
