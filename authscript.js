@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //send welcome mail
             await sendWelcomeEmail(email, name, userType);
 
-            signupSuccess.textContent = 'Account created successfully!';
+            signupSuccess.textContent = 'Welcome Email Sent. Account Creation Successful!';
             signupSuccess.style.display = 'block';
                 
                 setTimeout(() => {
