@@ -20,7 +20,7 @@ let currentUser = null;
 
 // Track user authentication state
 onAuthStateChanged(auth, (user) => {
-    currentUser = user; 
+    currentUser = user;
 });
 
 // Fetch all courses
@@ -30,7 +30,6 @@ async function fetchCourses() {
 
     querySnapshot.forEach((doc) => {
         const course = { id: doc.id, ...doc.data() };
-
         const courseCard = `
             <div class="course-card">
                 <img src="${course.imageUrl}" alt="${course.title}" width="450"/>
@@ -48,24 +47,24 @@ async function fetchCourses() {
         courseCatalog.innerHTML += courseCard;
     });
 
-    
+
     const enrollAll = document.querySelectorAll(".enroll");
-    enrollAll.forEach((enroll,index) => {
+    enrollAll.forEach((enroll, index) => {
         enroll.addEventListener("click", async (e) => {
             e.preventDefault();
             const course = querySnapshot.docs[index].data();
-            course.id = querySnapshot.docs[index].id; 
+            course.id = querySnapshot.docs[index].id;
 
             if (currentUser) {
                 try {
                     const userDoc = await getDoc(doc(db, "users", currentUser.uid));
                     if (userDoc.exists()) {
                         const userType = userDoc.data().userType;
-                        const para = enroll.nextElementSibling; 
+                        const para = enroll.nextElementSibling;
 
                         if (userType === "Mentor") {
                             para.innerText = "You need a Learner account to enroll in courses.";
-                            para.style.color = "red"; 
+                            para.style.color = "red";
                             para.style.display = "block";
                             setTimeout(() => {
                                 para.style.display = "none";
@@ -73,7 +72,7 @@ async function fetchCourses() {
                         } else {
                             // For Learners
                             para.innerText = "Successfully enrolled in this course!";
-                            para.style.color = "green"; 
+                            para.style.color = "green";
                             para.style.display = "block";
 
                             // Add course to enrolled courses

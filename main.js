@@ -20,14 +20,14 @@ const db = getFirestore(app);
 //Correct page based on userType
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        
+
         try {
             const userDoc = await getDoc(doc(db, "users", user.uid));
             if (userDoc.exists()) {
-                const userType = userDoc.data().userType; 
+                const userType = userDoc.data().userType;
                 if (userType === "Mentor") {
                     document.querySelector(".admin-page").style.display = "grid";
-                    fetchAdminCourses(user.uid); 
+                    fetchAdminCourses(user.uid);
                 } else if (userType === "Learner") {
                     document.querySelector("#user-page").style.display = "grid";
                 }
@@ -37,19 +37,19 @@ onAuthStateChanged(auth, async (user) => {
         } catch (error) {
             console.error("Error fetching user data:", error);
         }
-    } 
+    }
 });
 
 const logoutBtn = document.querySelector('#logoutBtn');
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
+logoutBtn.addEventListener('click', async () => {
+    try {
+        await signOut(auth);
 
-                window.location.href = 'index.html';
-            } catch (error) {
-                console.error('Error signing out:', error);
-            }
-        });
+        window.location.href = 'index.html';
+    } catch (error) {
+        console.error('Error signing out:', error);
+    }
+});
 
 // Restrict price and duration input to numeric values
 const priceInput = document.getElementById('course-price');
@@ -60,7 +60,7 @@ priceInput.addEventListener('input', (e) => {
         e.target.value = value.slice(0, -1);
     }
 });
-durationInput.addEventListener('input',(e)=>{
+durationInput.addEventListener('input', (e) => {
     const value = e.target.value;
     if (!/^\d*$/.test(value)) {
         e.target.value = value.slice(0, -1);
@@ -76,6 +76,7 @@ document.querySelector("#course-form").addEventListener("submit", async (e) => {
     const price = document.getElementById("course-price").value;
     const duration = document.getElementById("course-duration").value;
     const imageUrl = document.getElementById("imageurl").value;
+    const videoUrl = document.getElementById("course-video").value;
 
     try {
         const user = auth.currentUser;
@@ -86,13 +87,14 @@ document.querySelector("#course-form").addEventListener("submit", async (e) => {
                 price,
                 duration,
                 imageUrl,
+                videoUrl,
                 adminId: user.uid,
             };
 
-           
+
             await addDoc(collection(db, "courses"), newCourse);
             document.getElementById("message").innerText = "Course created successfully!";
-            fetchAdminCourses(user.uid); 
+            fetchAdminCourses(user.uid);
         }
     } catch (error) {
         console.error("Error creating course:", error);
@@ -145,12 +147,13 @@ async function displayEnrolledCourses(userId) {
                                 <p>${course.description}</p>
                                 <p>Price: ₹${course.price}</p>
                                 <p>Duration: ${course.duration} hours</p>
-                                <button class="learn-btn" type="submit">Start Learning</button>
+                                <button vid-url="${course.videoUrl}" class="learn-btn" type="submit">Start Learning</button>
                             </div>
                         </div>
                     `;
 
                     userPage.innerHTML += courseCard;
+                    attachLearn();
                 });
             } else {
                 userPage.querySelector("h1").innerText = "No Courses Enrolled";
@@ -164,33 +167,69 @@ async function displayEnrolledCourses(userId) {
 }
 
 //delete course 
-function attachDelete(){
-const deleteall = document.querySelectorAll(".destroy")
-deleteall.forEach((deletebtn)=>{
-    deletebtn.addEventListener("click", async(e)=>{   
-        if(confirm("Click OK to delete this course permanently")){
-            const courseID = e.target.getAttribute("data-id");
-            await deleteCourse(courseID);
-        }
+function attachDelete() {
+    const deleteall = document.querySelectorAll(".destroy")
+    deleteall.forEach((deletebtn) => {
+        deletebtn.addEventListener("click", async (e) => {
+            if (confirm("Click OK to delete this course permanently")) {
+                const courseID = e.target.getAttribute("data-id");
+                await deleteCourse(courseID);
+            }
+        })
     })
-})
 }
-async function deleteCourse(courseID){
-    try{
-        await deleteDoc(doc(db,"courses",courseID));
+async function deleteCourse(courseID) {
+    try {
+        await deleteDoc(doc(db, "courses", courseID));
         fetchAdminCourses(auth.currentUser.uid);
     }
-    catch(error){
-            console.error("Error occured:",error);
+    catch (error) {
+        console.error("Error occured:", error);
     }
 }
 
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists() && userDoc.data().userType === "Learner") {
-                displayEnrolledCourses(user.uid);
-            }
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists() && userDoc.data().userType === "Learner") {
+            displayEnrolledCourses(user.uid);
         }
-    });
+    }
+});
+
+//Start Learning on YT
+function attachLearn() {
+    const learnAll = document.querySelectorAll(".learn-btn");
+    learnAll.forEach((learn) => {
+        learn.addEventListener("click", async (e) => {
+            let vidUrl = e.currentTarget.getAttribute("vid-url");
+            await openYT(vidUrl);
+        })
+    })
+}
+
+async function openYT(vidUrl) {
+    try {
+        let videoId = vidUrl.split("v=")[1]?.split("&")[0];
+        let embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+        document.getElementById("videoFrame").src = embedUrl;
+        document.getElementById("videoModal").style.display = "flex";
+    }
+    catch (err) {
+        console.log("Cannot open video!");
+    }
+}
+
+document.querySelector(".close").addEventListener("click", closeModal);
+document.getElementById("videoModal").addEventListener("click", (e) => {
+    if (e.target === document.getElementById("videoModal")) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    document.getElementById("videoModal").style.display = "none";
+    document.getElementById("videoFrame").src = "";
+}
 
