@@ -68,7 +68,8 @@ durationInput.addEventListener('input', (e) => {
 });
 
 //Admin Page creating courses 
-document.querySelector("#course-form").addEventListener("submit", async (e) => {
+let courseCreateForm = document.querySelector("#course-form")
+courseCreateForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const title = document.getElementById("course-title").value;
@@ -95,6 +96,7 @@ document.querySelector("#course-form").addEventListener("submit", async (e) => {
             await addDoc(collection(db, "courses"), newCourse);
             document.getElementById("message").innerText = "Course created successfully!";
             fetchAdminCourses(user.uid);
+            courseCreateForm.reset();
         }
     } catch (error) {
         console.error("Error creating course:", error);
