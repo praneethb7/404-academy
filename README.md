@@ -73,33 +73,39 @@ CourseNo.
 Title: 
 Course Description:
 ImageURL:
+YT Video URL:
 
 Course1:
-React JS Free Course
-Dive into the world of front-end development with our comprehensive free online certification course on React JS. Whether you're a beginner or looking to refresh your skills, this course offers a structured path to mastering React JS, one of the most popular JavaScript libraries for building dynamic and responsive user interfaces. Learn quickly and elevate your web development skills with our expertly crafted modules.
-https://www.scaler.com/topics/images/Course_FI_816x352_MrinalBhattacharya-ReactJS
+C# tutorial for beginners
 
-Course2:
-Deep Learning Course: Deep Dive into Deep Learning
-Welcome to our free Deep Learning Course with certification. Designed for beginners, this course offers a comprehensive introduction to the field of deep learning, one of the most exciting and fast-growing areas of artificial intelligence
-https://www.scaler.com/topics/images/course_listing_312_x_136_srikanth_varma_webp
+Language syntax: Students learn the syntax of the C# language, including decision and iteration statements, methods, and operators 
+Object-oriented programming: Students learn object-oriented programming concepts such as encapsulation, inheritance, and polymorphism 
+.NET Framework: Students learn how to use the .NET Framework, including the Common Language Runtime (CLR) and the .NET Class Library 
+Visual Studio: Students learn how to use Visual Studio as an integrated development environment (IDE) 
+
+https://i.ytimg.com/vi/r3CExhZgZV8/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBOmZFTV06BUpI_uv6c4pP3jBdKCg
+
+https://www.youtube.com/watch?v=gfkTfcpWqAY
+
+Course2: 
+Learn Rust Programming - Complete Course 🦀
+
+Memory safety: How Rust enforces memory safety without using garbage collection. Performance: How Rust's low overhead makes it fast and high performing. Static typing: How Rust's static typing makes it easy to maintain. Concurrency: How Rust focuses on concurrency. Ownership, borrowing, and lifetimes: How Rust's ownership, borrowing, and lifetimes concepts work. Expressions: How Rust's expressions allow developers to write complex code concisely 
+
+https://i.ytimg.com/vi/BpPEoZW5IiY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBD9DssN-2ShNw_Q_KdpT0mDgzhZQ
+
+https://www.youtube.com/watch?v=BpPEoZW5IiY&t=6s
+
 
 Course3:
-String Pattern Matching: KMP Algorithm
-This is Scaler Topics free online course on string pattern matching using the KMP algorithm. The course is designed for beginners who want to learn how to use the KMP algorithm to solve complex string matching problems.
-https://www.scaler.com/topics/images/course_card_image_kmp-algorithm.webp
+Kubernetes Roadmap - Complete Step-by-Step Learning Path
 
-Course4:
-Data Structures in C++ Course
-Scaler Topics Data Structures and Algorithms in C++ online course is designed for beginners who are interested in learning data structures and algorithms in C++. The course is free and can be accessed from anywhere at any time. The course is self-paced, which means that you can learn at your own pace.
-https://www.scaler.com/topics/images/course_card_image_data_structures_in_cpp.webp
+That's my recommended path, if you want to learn from me.
+Kubernetes is being adopted at companies at a high pace and anyone with knowledge in that  
+has a career advantage. But it has a steep learning curve and many don't know where to start. So it certainly helps to have a guidance of how to approach learning  K8s efficiently. That's why I want to give you a step-by-step roadmap of what to learn and in which order to structure your learning of Kubernetes. 💙
 
-Course5:
-SQL for Beginners: Learn SQL using MySQL and Database Design Course
-Are you interested in learning SQL using MySQL? Look no further than our comprehensive free online course! Scaler Topics SQL using MySQL free course is designed with beginners in mind and will teach you the fundamentals of SQL and MySQL, enabling you to build a solid foundation in database management.
-https://www.scaler.com/topics/images/featured_image_sql_using_mysql.webp
+https://i.ytimg.com/vi/S8eX0MxfnB4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBkZdeu9lbENWXBq5RACDyESRI5Qw
 
-Course6:
-Machine Coding Tic Tac Toe - LLD Case Study
-Scaler Topics Tic Tac Toe Course Free Course offers a comprehensive introduction to the Low-Level Design (LLD) of a machine-coded Tic Tac Toe game. As a beginner, you will learn the fundamental concepts of object-oriented programming, data structures, and algorithms while working on a real-world project. By the end of this course, you will be proficient in designing and implementing a complete Tic Tac Toe game from scratch.
-https://www.scaler.com/topics/images/Course_FI_tictactoe_arnav_gupta_webp
+https://www.youtube.com/watch?v=S8eX0MxfnB4
+
+
